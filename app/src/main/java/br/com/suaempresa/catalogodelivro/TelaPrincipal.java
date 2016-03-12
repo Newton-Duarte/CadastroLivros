@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
-public class TelaPrincilal extends AppCompatActivity implements View.OnClickListener   {
+public class TelaPrincipal extends AppCompatActivity implements View.OnClickListener   {
 
     private Button btnCadastrar;
     private Button btnPesquisar;
@@ -18,7 +18,7 @@ public class TelaPrincilal extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tela_princilal);
+        setContentView(R.layout.activity_tela_principal);
 
         btnCadastrar = (Button)findViewById(R.id.btnCadastrar);
         btnPesquisar = (Button)findViewById(R.id.btnPesquisar);

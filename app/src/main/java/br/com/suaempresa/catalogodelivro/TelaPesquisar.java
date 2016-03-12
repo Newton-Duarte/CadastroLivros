@@ -4,11 +4,13 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,7 @@ import java.util.List;
 public class TelaPesquisar extends AppCompatActivity implements View.OnClickListener {
 
     private Button btnVoltar;
+    public String msg = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +39,22 @@ public class TelaPesquisar extends AppCompatActivity implements View.OnClickList
                  lista = new DatabaseHelper(this).pesquisarPorTitulo(chave);
 
              } else if (tipo == R.id.rbPesquisarPorAno) {
-                 lista = new DatabaseHelper(this).pesquisarPorAno(Integer.parseInt(chave.toString()));
-             } else if (tipo == R.id.rbPesquisarPorTodos) {
-                 lista = new DatabaseHelper(this).pesquisarPorTodos();
+                 if (!TextUtils.isEmpty(chave.trim())) {
+                     try {
+                         lista = new DatabaseHelper(this).pesquisarPorAno(Integer.parseInt(chave.toString()));
+                     } catch (Exception e) {
+                         e.printStackTrace();
+                     }
+                 } else {
+                     lista = new DatabaseHelper(this).pesquisarPorTodos();
+                 }
+
+             } else if (tipo == R.id.rbPesquisarPorAutor) {
+                 if (!TextUtils.isEmpty(chave.trim())) {
+                     lista = new DatabaseHelper(this).pesquisarPorAutor(chave);
+                 } else {
+                     lista = new DatabaseHelper(this).pesquisarPorTodos();
+                 }
              }
 
              if (lista != null) { //Aqui é a magica

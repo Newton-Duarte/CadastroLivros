@@ -71,6 +71,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return pesquisar(sql, where);
     }
 
+    public List<ContentValues> pesquisarPorAutor(String autor) {
+        String sql = "SELECT * FROM catalogo " +
+                "WHERE autor LIKE ?";
+
+        String where[] = new String []
+                {"%" + autor + "%"};
+
+        return pesquisar(sql, where);
+    }
+
     public List<ContentValues> pesquisarPorAno(int ano) {
         String sql = "SELECT * FROM catalogo WHERE ano=? ";
         String where[] = new String[]{String.valueOf(ano)};
